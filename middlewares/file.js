@@ -1,12 +1,8 @@
 const multer = require('multer');
-const path = require('path');
 
 const MIME_TYPE_MAP = {
     'application/json': 'json',
-    'text/javascript': 'js',
-    'image/png': 'png',
-    'image/jpeg': 'jpg',
-    'image/jpg': 'jpg'
+    'text/javascript': 'js'
 };
 
 const storage = multer.diskStorage({
@@ -24,12 +20,4 @@ const storage = multer.diskStorage({
     }
 });
 
-exports.uploadFile = multer({
-    storage,
-    fileFilter: (req, file, callback) => {
-        console.log('IN THE MIDDLEWARE!');
-        console.log('file.mimetype ->', file.mimetype);
-        console.log('path.extname(file.originalname) ->', path.extname(file.originalname));
-        return callback(null, true);
-    }
-}).single('file');
+exports.uploadFile = multer({ storage }).single('file');
