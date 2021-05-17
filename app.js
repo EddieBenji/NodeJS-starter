@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const domainRouter = require('./routes/domains');
 const agentRouter = require('./routes/agents');
 const connectionRouter = require('./routes/connections');
+const fileRouter = require('./routes/files');
 
 //initialize the app:
 const app = express();
@@ -25,5 +26,6 @@ app.use((req, res, next) => {
 app.use('/api', domainRouter);
 app.use('/api', agentRouter);
 app.use('/api', connectionRouter);
+app.use('/api', fileRouter);
 
 module.exports = app;

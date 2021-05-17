@@ -190,3 +190,7 @@ dist
 .pnp.*
 
 .idea
+# the folder where the files will be added:
+files
+files/bundles
+files/json
