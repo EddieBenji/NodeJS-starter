@@ -6,8 +6,8 @@
   "scripts": {
     "start:dev:server": "nodemon server.js",
     "start:server": "node server.js",
-    "restart:dev:server": "docker-compose down -v && sudo rm -rf data && docker-compose up -d && nodemon server.js",
-    "restart:server": "docker-compose down -v && sudo rm -rf data && docker-compose up -d && node server.js"
+    "restart:dev:server": "docker-compose down -v && sudo rm -rf data && rm -rf files && docker-compose up -d && nodemon server.js",
+    "restart:server": "docker-compose down -v && sudo rm -rf data && rm -rf files && docker-compose up -d && node server.js"
   },
   "keywords": [],
   "dependencies": {
