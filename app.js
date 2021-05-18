@@ -8,6 +8,7 @@ const domainRouter = require('./routes/domains');
 const agentRouter = require('./routes/agents');
 const connectionRouter = require('./routes/connections');
 const fileRouter = require('./routes/files');
+const forwarderRouter = require('./routes/forwarders');
 
 //initialize the app:
 const app = express();
@@ -44,5 +45,6 @@ app.use('/api', domainRouter);
 app.use('/api', agentRouter);
 app.use('/api', connectionRouter);
 app.use('/api', fileRouter);
+app.use('/api', forwarderRouter);
 
 module.exports = app;
