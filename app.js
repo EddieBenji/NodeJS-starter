@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // Our routes:
 const domainRouter = require('./routes/domains');
@@ -26,6 +27,9 @@ mongoose.connect(
 // with this, we parse the body always as json.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// Every time we listen a GET to /files, we will serve the dir as an static folder to the UI.
+app.use('/files', express.static(path.join(__dirname, 'files')));
+
 
 // This will avoid the CORS issue;
 app.use((req, res, next) => {
