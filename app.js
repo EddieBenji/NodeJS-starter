@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // Our routes:
 const domainRouter = require('./routes/domains');
@@ -9,6 +10,18 @@ const fileRouter = require('./routes/files');
 
 //initialize the app:
 const app = express();
+
+// Connect to the mongo db atlas.
+mongoose.connect(
+  'mongodb://localhost:27017/node-angular',
+  { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }
+).then(() => {
+    console.log('connected to database !');
+})
+  .catch((error) => {
+      console.log('connection failed!');
+      console.error('error: ', error);
+  });
 
 // with this, we parse the body always as json.
 app.use(bodyParser.json());
