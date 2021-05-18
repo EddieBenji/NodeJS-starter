@@ -1,9 +1,6 @@
 const multer = require('multer');
 
-const MIME_TYPE_MAP = {
-    'application/json': 'json',
-    'text/javascript': 'js'
-};
+const { MIME_TYPE_MAP, JSON_LOWER_CASE, JSON_DIR_PATH, BUNDLES_DIR_PATH } = require('../utils/constants.js');
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -13,7 +10,7 @@ const storage = multer.diskStorage({
             error = null;
         }
         // the path is relative to server.js!!
-        callback(error, isValid === 'json' ? 'files/json' : 'files/bundles');
+        callback(error, isValid === JSON_LOWER_CASE ? JSON_DIR_PATH : BUNDLES_DIR_PATH);
     },
     filename: (req, file, callback) => {
         callback(null, file.originalname);

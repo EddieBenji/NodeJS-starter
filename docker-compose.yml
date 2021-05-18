@@ -1,13 +1,13 @@
 version: "2"
 services:
-  app:
-    container_name: app
-    restart: always
-    build: .
-    ports:
-      - "5500:5500"
-    links:
-      - mongo
+#  app:
+#    container_name: app
+#    restart: always
+#    build: .
+#    ports:
+#      - "5500:5500"
+#    links:
+#      - mongo
   mongo:
     container_name: mongo
     image: mongo

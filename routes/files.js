@@ -5,4 +5,6 @@ const addDirsIfNeeded = require('../middlewares/checkDirs');
 const { uploadFile } = require('../middlewares/file');
 
 router.post('/file', addDirsIfNeeded, uploadFile, FilesController.addFile);
+router.get('/files', FilesController.getSchemas);
+
 module.exports = router;
