@@ -45,7 +45,8 @@ exports.addFile = (req, res) => {
 		.then(() => {
 			const schemaToAdd = new WebComponent({
 				filePath: req.file.path,
-				customTagName: req.body.customTagNameOfWebComponent
+				customTagName: req.body.customTagNameOfWebComponent,
+				formName: req.body.formName
 			});
 			return schemaToAdd.save();
 		}, (error) => {
@@ -59,7 +60,7 @@ exports.addFile = (req, res) => {
 			res.status(200).json({
 				message: `${schemaAdded} added successfully`,
 				schema: {
-					...createdSchema,
+					...createdSchema._doc,
 					id: createdSchema._id
 				}
 			});
@@ -91,7 +92,7 @@ exports.addFiles = (req, res) => {
 			const schemaToAdd = new Json({
 				uiSchemaFilePath: files[uiSchemaIdx].path,
 				schemaFilePath: files[jsonSchemaIdx].path,
-				formName: req.body.jsonFormName
+				formName: req.body.formName
 			});
 			return schemaToAdd.save();
 		}, (error) => {
