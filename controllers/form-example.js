@@ -75,4 +75,19 @@ exports.updateFormExample = (req, res, next) => {
       });
 };
 
+exports.deleteForExample = async (req, res, next) => {
+    FormExample.deleteOne({ _id: req.params.id })
+      .then((result) => {
+          if (result.n > 0) {
+              return res.status(200).json({
+                  message: `Form Example deleted`
+              });
+          }
+          res.status(401).json({
+              message: 'User not authorized'
+          });
+      })
+      .catch(err => res.send(500).json({ message: `Deleting Form example (${req.params.id}) failed` }));
+};
+
 
