@@ -12,34 +12,30 @@ const forwarderRouter = require('./routes/forwarders');
 const formExampleRouter = require('./routes/form-examples');
 
 //initialize the app:
+const cors = require('cors');
 const app = express();
 
 // Connect to the mongo db atlas.
 mongoose.connect(
-  'mongodb://localhost:27017/node-angular',
-  { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }
+	'mongodb://localhost:27017/node-angular',
+	{ useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }
 ).then(() => {
-    console.log('connected to database !');
-})
-  .catch((error) => {
-      console.log('connection failed!');
-      console.error('error: ', error);
-  });
+		console.log('connected to database !');
+	})
+	.catch((error) => {
+		console.log('connection failed!');
+		console.error('error: ', error);
+	});
 
 // with this, we parse the body always as json.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// Every time we listen a GET to /files, we will serve the dir as an static folder to the UI.
-app.use('/files', express.static(path.join(__dirname, 'files')));
-
 
 // This will avoid the CORS issue;
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS, PUT');
-    next();
-});
+app.use(cors());
+
+// Every time we listen a GET to /files, we will serve the dir as an static folder to the UI.
+app.use('/files', express.static(path.join(__dirname, 'files')));
 
 // filtered the routes to have always '/api/posts' always.
 app.use('/api', domainRouter);
