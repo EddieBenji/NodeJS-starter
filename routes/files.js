@@ -7,5 +7,6 @@ const { uploadFile, uploadFiles } = require('../middlewares/file');
 router.post('/file', addDirsIfNeeded, uploadFile, FilesController.addFile);
 router.post('/files', addDirsIfNeeded, uploadFiles, FilesController.addFiles);
 router.get('/files', FilesController.getSchemas);
+router.delete('/files/:type/:id', FilesController.deleteFiles);
 
 module.exports = router;
