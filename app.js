@@ -9,6 +9,7 @@ const agentRouter = require('./routes/agents');
 const connectionRouter = require('./routes/connections');
 const fileRouter = require('./routes/files');
 const forwarderRouter = require('./routes/forwarders');
+const formExampleRouter = require('./routes/form-examples');
 
 //initialize the app:
 const app = express();
@@ -46,5 +47,6 @@ app.use('/api', agentRouter);
 app.use('/api', connectionRouter);
 app.use('/api', fileRouter);
 app.use('/api', forwarderRouter);
+app.use('/api', formExampleRouter);
 
 module.exports = app;
